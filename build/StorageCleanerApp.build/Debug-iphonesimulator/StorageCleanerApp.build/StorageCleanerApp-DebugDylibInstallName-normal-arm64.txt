@@ -1,1 +1,0 @@
-@rpath/StorageCleanerApp.debug.dylib

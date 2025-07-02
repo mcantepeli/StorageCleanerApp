@@ -1,2 +1,0 @@
-Target dependency graph (1 target)
-Target 'StorageCleanerApp' in project 'StorageCleanerApp' (no dependencies)
