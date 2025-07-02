@@ -1,0 +1,64 @@
+{
+  "source": "/Users/can/Desktop/StorageCleanerApp/StorageCleanerApp/Views/OnboardingView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Gizlilik Önceliğimiz",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 9
+        }
+      },
+      {
+        "comment": "",
+        "key": "Tüm analizler cihazınızda yapılır, verileriniz asla dışarı çıkmaz.",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 12
+        }
+      },
+      {
+        "comment": "",
+        "key": "İzin verildi! Şimdi uygulamayı keşfedin.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 26
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fotoğraflara Erişime İzin Ver",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 18
+        }
+      },
+      {
+        "comment": "",
+        "key": "İzin Gerekli",
+        "location": {
+          "startingColumn": 29,
+          "startingLine": 34
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fotoğraflara erişim izni olmadan bazı özellikler kullanılamaz.",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 35
+        }
+      },
+      {
+        "comment": "",
+        "key": "Tamam",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 36
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+    "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleName</key>
+    <string>StorageCleanerApp</string>
+
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Uygulama, fotoğraf kütüphanenizdeki gereksiz fotoğrafları tespit etmek ve temizlemek için erişim ister.</string>
+
+    <key>NSCameraUsageDescription</key>
+    <string>Fotoğraf çekmek için kamera erişimi gereklidir.</string>
+
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Ses kaydı için mikrofon erişimi gereklidir.</string>
+
+    <key>NSContactsUsageDescription</key>
+    <string>Rehberinizdeki kişilere erişim için izin gerekir.</string>
+
+    <key>NSCalendarsUsageDescription</key>
+    <string>Takvim etkinliklerinizi yönetmek için izin gerekir.</string>
+
+    <key>MinimumOSVersion</key>
+    <string>17.0</string>
+
+    <key>CFBundleIdentifier</key>
+    <string>com.yourcompany.StorageCleanerApp</string>
+
+    <key>CFBundleShortVersionString</key>
+    <string>1.0</string>
+
+    <key>CFBundleVersion</key>
+    <string>1</string>
+</dict>
+</plist>
+
