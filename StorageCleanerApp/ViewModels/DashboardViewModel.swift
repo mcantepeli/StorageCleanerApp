@@ -4,10 +4,13 @@
 //
 //  Created by Can on 27.06.2025.
 import Photos
-
+import Combine
 import Foundation
 
 class DashboardViewModel: ObservableObject {
+    
+    private var cancellables = Set<AnyCancellable>()
+    
     @Published var categories: [StorageCategory] = [
         StorageCategory(name: "Fotoğraflar", usedSpace: 12.5, cleanableSpace: 3.2, color: .orange),
         StorageCategory(name: "Videolar", usedSpace: 8.0, cleanableSpace: 1.5, color: .red),
@@ -29,13 +32,17 @@ class DashboardViewModel: ObservableObject {
     @Published var analyzedPhotos: [AnalyzedPhoto] = []
     let photoService = PhotoLibraryService()
     
-    func analyzePhotos() {
+    func analyzePhotos(completion: (() -> Void)? = nil) {
         photoService.analyzePhotos()
         photoService.$analyzedPhotos
             .receive(on: DispatchQueue.main)
-            .assign(to: &$analyzedPhotos)
+            .sink { [weak self] analyzed in
+                self?.analyzedPhotos = analyzed
+                completion?()
+            }
+            .store(in: &cancellables)
     }
-    
+
     func performSmartClean() {
         
         // Temizlikten önce toplam temizlenebilir alanı hesapla

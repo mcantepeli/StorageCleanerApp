@@ -1,14 +1,25 @@
 import SwiftUI
 
 struct CategoryDetailView: View {
+    
     let category: StorageCategory
     @ObservedObject var viewModel: DashboardViewModel
+    
     @State private var selectedPhotoIDs = Set<String>()
     @State private var showDeleteAlert = false
+    @State private var isLoading = false
 
     var body: some View {
         VStack {
             if category.name == "Fotoğraflar" {
+            if isLoading {
+                ProgressView("Fotoğraflar analiz ediliyor...")
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else if viewModel.analyzedPhotos.isEmpty {
+                Text("Gösterilecek fotoğraf yok.")
+                    .foregroundColor(.gray)
+            } else {
+                
                 List(viewModel.analyzedPhotos) { photo in
                     HStack {
                         Button(action: {
@@ -43,11 +54,20 @@ struct CategoryDetailView: View {
                         secondaryButton: .cancel()
                     )
                 }
+             }
             } else {
                 Text("\(category.name) için analiz özelliği yakında!")
             }
         }
         .navigationTitle(category.name)
+        .onAppear {
+            if category.name == "Fotoğraflar" {
+                isLoading = true
+                viewModel.analyzePhotos {
+                    isLoading = false
+                }
+            }
+        }
     }
 
     private func toggleSelection(_ id: String) {
