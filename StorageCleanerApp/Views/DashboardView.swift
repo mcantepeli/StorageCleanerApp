@@ -50,7 +50,7 @@ struct DashboardView: View {
                 .alert(isPresented: $showCleanResult ) {
                     Alert(
                         title: Text("Başarılı!"),
-                        message: Text("Gereksiz dosyalar temizlendi."),
+                        message: Text("Gereksiz dosyalar temizlendi.\nAçılan alan: \(String(format: "%.1f", viewModel.lastCleanedSpace)) GB"),
                         dismissButton: .default(Text("Tamam"))
                     )
                 }

@@ -3,6 +3,8 @@
 //  StorageCleanerApp
 //
 //  Created by Can on 27.06.2025.
+import Photos
+
 import Foundation
 
 class DashboardViewModel: ObservableObject {
@@ -15,6 +17,9 @@ class DashboardViewModel: ObservableObject {
     ]
     
     let totalCapacity: Double = 64.0 // Örnek cihaz kapasitesi GB
+    
+    // Temizlik sonrası açılan alanı tutmak için:
+    @Published var lastCleanedSpace: Double = 0
     
     var totalUsed: Double {
         categories.reduce(0) { $0 + $1.usedSpace }
@@ -32,6 +37,35 @@ class DashboardViewModel: ObservableObject {
     }
     
     func performSmartClean() {
-        print("Akıllı temizleme başlatıldı.")
+        
+        // Temizlikten önce toplam temizlenebilir alanı hesapla
+        let cleaned = categories.reduce(0) { $0 + $1.cleanableSpace }
+        lastCleanedSpace = cleaned
+        
+        categories = categories.map { category in
+            StorageCategory(
+                name: category.name,
+                usedSpace: max(0, category.usedSpace - category.cleanableSpace),
+                cleanableSpace: 0,
+                color: category.color
+            )
+        }
+        
     }
+    
+    func deletePhotos(withIDs ids: [String]) {
+        let assetsToDelete = analyzedPhotos.filter { ids.contains($0.id) }.map { $0.asset }
+        
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.deleteAssets(assetsToDelete as NSArray)
+        }, completionHandler: { success, error in
+            DispatchQueue.main.async {
+                if success {
+                    self.analyzedPhotos.removeAll { ids.contains($0.id) }
+                }
+                // Hata yönetimi ekleyebilirsiniz
+            }
+        })
+    }
+    
 }
